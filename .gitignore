@@ -12,6 +12,5 @@ wheels/
 # Generated outputs
 outputs/
 
-# Audio files (large, personal recordings)
-*.wav
+# Original phone recordings (converted to wav)
 *.mp4
