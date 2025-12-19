@@ -311,6 +311,7 @@ def main():
 
     # Q1: Load and resample
     audio_orig, sr_orig = librosa.load(audio_path, sr=None, mono=True, dtype=np.float32)
+    print(f"The original sampling frequency of the audio is {sr_orig}")
     audio_32k = resample(audio_orig, int(sr_orig), 32000)
 
     # Downsample to 16kHz: naive vs proper
@@ -318,11 +319,11 @@ def main():
     audio_16k = resample(audio_32k, 32000, 16000)
     sr = 16000
 
-    naive_title = f"Naive Downsample from 32kHz to 16kHz (orig sr={sr_orig}Hz)"
+    naive_title = f"Naive Downsample from 32kHz to 16kHz"
     plot_audio_analysis(audio_naive, sr, naive_title).savefig(out / "q1_naive.png")
     sf.write(out / "q1_naive.wav", audio_naive, sr)
 
-    proper_title = f"Proper Downsample from {sr_orig}Hz to 16kHz"
+    proper_title = f"Proper Downsample from 32KHz to 16kHz"
     plot_audio_analysis(audio_16k, sr, proper_title).savefig(out / "q1_proper.png")
     sf.write(out / "q1_proper.wav", audio_16k, sr)
 
